@@ -38,4 +38,17 @@ Clona el repositorio con:
 1. git clone https://github.com/JosephCortez15/SIS214_ExamenPractico2_CortezJoseph.git
 2. Entra a la carpeta del proyecto.
 3. Abre el index.html directamente en el navegador o usando la extension Live Server en Visual Studio Code para probarlo en tiempo real.
+
+## Checklist de Verificacion Pre-Entrega
+
+- [✔] Marcado HTML5 semantico obligatorio (<header>, <nav>, <main>, <section>, <article>, <aside>, <footer>) y atributos WAI-ARIA (role="dialog", aria-modal, aria-expanded).
+- [✔] Diseno Mobile-First adaptativo con Media Queries explicitas (<768px, 768px-1024px, >1024px) combinando Flexbox y CSS Grid.
+- [✔] Conmutador de tema (Dark/Light Mode) persistente en localStorage mediante serializacion con JSON.stringify() y deserializacion con JSON.parse().
+- [✔] Menu hamburguesa responsivo para dispositivos moviles con captura de eventos click y mutacion dinamica del atributo aria-expanded.
+- [✔] Buscador y filtro en tiempo real inmutable mediante procesamiento funcional encadenando .filter() y .map().
+- [✔] Formulario interactivo con intercepcion de submit via event.preventDefault(), validaciones en tiempo real (evento input) y sin recargas de pagina.
+- [✔] Modulo asincrono REST (Fetch API) con async/await, evaluacion de response.ok, manejo de errores en bloques try...catch y gestion visual de los 3 estados (loading, success, error).
+- [✔] Proyecto desplegado, operativo y accesible sin errores de carga en GitHub Pages.
+- [✔] Repositorio publico en GitHub con historial de commits progresivo y documentacion tecnica README.md completa.
+
 Desarrollado por Joseph Wendell Hans Cortez Chura - 2026
