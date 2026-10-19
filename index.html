@@ -3,101 +3,265 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portafolio - Joseph Cortez</title>
+    <title>Portafolio Profesional - Joseph Wendell Hans Cortez Chura</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <header class="header-principal">
-        <div class="logo">Joseph Cortez <span aria-hidden="true">|</span> Sistemas</div>
+        <div class="logo">Joseph Cortez <span aria-hidden="true">|</span> Ingenieria de Sistemas</div>
+        
         <div class="controles-ui">
-            <button id="btn-tema" aria-label="Alternar modo oscuro y claro" class="btn-texto">
-                Modo Oscuro
-            </button>
-            <button id="btn-menu" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu de navegacion" class="btn-hamburguesa">
-                Menu
-            </button>
+            <button id="btn-tema" aria-label="Alternar modo oscuro y claro" class="btn-texto">Modo Oscuro</button>
+            <button id="btn-menu" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu de navegacion" class="btn-hamburguesa">Menu</button>
         </div>
 
-        <nav id="menu-principal" class="nav-oculto" role="navigation">
+        <nav id="menu-principal" class="nav-oculto" role="navigation" aria-label="Navegacion principal">
             <ul class="nav-links">
                 <li><a href="#perfil">Perfil</a></li>
-                <li><a href="#github-api">Repositorios</a></li>
+                <li><a href="#formacion">Formacion</a></li>
+                <li><a href="#experiencia">Experiencia</a></li>
+                <li><a href="#habilidades">Habilidades</a></li>
+                <li><a href="#idiomas">Idiomas</a></li>
                 <li><a href="#proyectos">Portafolio</a></li>
+                <li><a href="#github-api">Actividad GitHub</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
         </nav>
     </header>
 
     <main class="contenedor-principal">
-        <section id="perfil" class="hero-section">
-            <h1>Joseph Wendell Hans Cortez Chura</h1>
-            <p>Estudiante de Ingenieria de Sistemas | Universidad Catolica Boliviana San Pablo</p>
+        
+        <section id="perfil" class="seccion-bloque">
+            <header class="perfil-cabecera">
+                <h1>Joseph Wendell Hans Cortez Chura</h1>
+                <p class="subtitulo">Estudiante de Ingenieria de Sistemas | Universidad Catolica Boliviana San Pablo (La Paz, Bolivia)</p>
+            </header>
+            
+            <address class="datos-contacto">
+                <p><strong>Ubicacion:</strong> Zona 16 de Julio, C. Arturo Valle Nro. 3123, El Alto, La Paz, Bolivia</p>
+                <p><strong>Correo Institucional:</strong> <a href="mailto:joseph.cortez@ucb.edu.bo">joseph.cortez@ucb.edu.bo</a></p>
+                <p><strong>Telefono / Celular:</strong> +591 67099499</p>
+            </address>
+
+            <article class="perfil-resumen">
+                <h2>Perfil Profesional</h2>
+                <p>Estudiante de Ingenieria de Sistemas con solida orientacion al desarrollo de software backend, arquitectura de bases de datos relacionales y no relacionales, diseno de infraestructura de redes y algoritmos de optimizacion. Proactivo, analitico y enfocado en la construccion de soluciones computacionales eficientes mediante buenas practicas de ingenieria y patrones de diseno modernos.</p>
+            </article>
+        </section>
+
+        <section id="formacion" class="seccion-bloque">
+            <h2>Formacion Academica</h2>
+            
+            <article class="item-trayectoria">
+                <h3>Ingenieria de Sistemas</h3>
+                <p class="institucion">Universidad Catolica Boliviana "San Pablo" - Sede La Paz</p>
+                <p class="periodo"><time datetime="2024">2024</time> - Actualidad | Grado: En curso regular</p>
+                <p>Enfoque curricular en ingenieria de software, desarrollo de interfaces web cliente/servidor, modelado de sistemas de informacion, estructuras de datos avanzadas y diseno de redes corporativas.</p>
+            </article>
+
+            <article class="item-trayectoria">
+                <h3>Tecnico Medio en Administracion de Empresas &amp; Bachillerato en Humanidades</h3>
+                <p class="institucion">Colegio Don Bosco El Prado</p>
+                <p class="periodo">Finalizacion: <time datetime="2023">2023</time> | Titulo: Bachiller en Humanidades y Certificacion Tecnica</p>
+                <p>Formacion integral con competencias en gestion de procesos administrativos, planificacion estrategica, oratoria y liderazgo de equipos de trabajo.</p>
+            </article>
+        </section>
+
+        <section id="experiencia" class="seccion-bloque">
+            <h2>Experiencia y Formacion Civica</h2>
+            
+            <article class="item-trayectoria">
+                <h3>Servicio Pre-Militar Obligatorio</h3>
+                <p class="institucion">Ministerio de Defensa - Fuerzas Armadas del Estado Plurinacional de Bolivia</p>
+                <p class="periodo">Gestion: <time datetime="2022">2022</time></p>
+                <p><strong>Responsabilidades:</strong> Cumplimiento de instruccion civico-militar, capacitacion tactica, defensa civil y rigurosa disciplina fisica y operativa en equipo.</p>
+                <p><strong>Acreditacion obtenida:</strong> Libreta de Servicio Pre-Militar, Serie 534867.</p>
+            </article>
+        </section>
+
+        <section id="habilidades" class="seccion-bloque">
+            <h2>Habilidades Tecnicas y Competencias</h2>
+            <div class="habilidades-layout">
+                <article class="habilidad-columna">
+                    <h3>Lenguajes y Tecnologias de Programacion</h3>
+                    <ul class="lista-habilidades">
+                        <li>
+                            <span>HTML5 Semantico &amp; Web Standards</span>
+                            <meter value="0.85" min="0" max="1">85%</meter>
+                        </li>
+                        <li>
+                            <span>JavaScript ES6+ (DOM / Asincronia / APIs)</span>
+                            <meter value="0.75" min="0" max="1">75%</meter>
+                        </li>
+                        <li>
+                            <span>Bases de Datos SQL (PostgreSQL / MySQL)</span>
+                            <meter value="0.75" min="0" max="1">75%</meter>
+                        </li>
+                        <li>
+                            <span>Python (Estructuras de datos y Scripts)</span>
+                            <meter value="0.65" min="0" max="1">65%</meter>
+                        </li>
+                        <li>
+                            <span>Java &amp; C++ (POO y Algoritmos)</span>
+                            <meter value="0.55" min="0" max="1">55%</meter>
+                        </li>
+                    </ul>
+                </article>
+
+                <article class="habilidad-columna">
+                    <h3>Herramientas e Infraestructura</h3>
+                    <ul class="lista-herramientas">
+                        <li><strong>Simulacion de Redes:</strong> Cisco Packet Tracer, VLSM Subnetting, Enrutamiento basico.</li>
+                        <li><strong>Control de Versiones:</strong> Git, GitHub, Gestion de Ramas y Commits atomicos.</li>
+                        <li><strong>Entornos de Desarrollo:</strong> Visual Studio Code, Live Server, Chrome DevTools.</li>
+                        <li><strong>Bases NoSQL &amp; Analitica:</strong> MongoDB, Modelado dimensional (Star Schema).</li>
+                        <li><strong>Productividad y Documentacion:</strong> Obsidian Markdown Vaults, Trello.</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section id="idiomas" class="seccion-bloque">
+            <h2>Idiomas y Certificaciones</h2>
+            <div class="tabla-contenedor">
+                <table class="tabla-idiomas">
+                    <caption>Evaluacion del nivel de competencia linguistica</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Idioma</th>
+                            <th scope="col">Comprension Lectora</th>
+                            <th scope="col">Expresion Escrita</th>
+                            <th scope="col">Interaccion Verbal</th>
+                            <th scope="col">Entidad / Modalidad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Castellano</th>
+                            <td>Nativo</td>
+                            <td>Nativo</td>
+                            <td>Nativo</td>
+                            <td>Lengua Materna</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Ingles</th>
+                            <td>Intermedio (B1/B2)</td>
+                            <td>Intermedio</td>
+                            <td>Intermedio</td>
+                            <td>Instituto CBA y UCB (Preparacion TOEIC)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Aymara</th>
+                            <td>Basico</td>
+                            <td>Basico</td>
+                            <td>Basico</td>
+                            <td>Formacion Academica / Regional</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <article class="certificaciones-lista">
+                <h3>Cursos y Certificaciones Academicas</h3>
+                <ul>
+                    <li><strong>Curso de Oratoria y Lenguaje Corporal:</strong> <time datetime="2023-12-11">11 de diciembre de 2023</time> al <time datetime="2024-01-12">12 de enero de 2024</time>.</li>
+                    <li><strong>Educacion, Conduccion y Seguridad Vial:</strong> Conduccion de vehiculos motorizados (<time datetime="2022-01-25">25 de enero de 2022</time>).</li>
+                    <li><strong>Participacion Cultural Institucional:</strong> XVI Festival del Sol (<time datetime="2018-10">Octubre de 2018</time>).</li>
+                </ul>
+            </article>
+        </section>
+
+        <section id="proyectos" class="seccion-bloque">
+            <header class="portafolio-cabecera">
+                <h2>Portafolio de Proyectos de Ingenieria</h2>
+                <p>Coleccion estructurada de sistemas desarrollados. Ingrese una tecnologia o termino en el buscador para activar el filtro funcional inmutable en tiempo real.</p>
+            </header>
+
+            <div class="buscador-container">
+                <label for="input-buscador" class="sr-only">Filtrar proyectos en tiempo real</label>
+                <input type="text" id="input-buscador" placeholder="Filtrar por tecnologia o concepto (ej. SQL, Redes, React, Java, Flutter)..." aria-label="Filtrar proyectos de software">
+            </div>
+
+            <div id="grid-proyectos" class="proyectos-grid" aria-live="polite">
+            </div>
         </section>
 
         <div class="layout-grid">
-            <section id="github-api" class="api-section">
-                <h2>Actividad en GitHub (En vivo)</h2>
-                <div id="api-loading" class="estado-ui">Cargando repositorios desde el servidor...</div>
-                <div id="api-error" class="estado-ui oculto" role="alert">Error al conectar con la API de GitHub. Verifique la conexion.</div>
-                <div id="api-success" class="oculto">
-                </div>
+            <section id="github-api" class="seccion-bloque">
+                <h2>Actividad en Vivo desde GitHub REST API</h2>
+                <p>Consumo asincrono de repositorios publicos con Fetch API, evaluacion de estados HTTP y visualizacion de ciclo de vida.</p>
+                
+                <div id="api-loading" class="estado-ui">Consultando servidores de GitHub API v3...</div>
+                <div id="api-error" class="estado-ui estado-error oculto" role="alert"></div>
+                <div id="api-success" class="repos-contenedor oculto"></div>
             </section>
 
-            <aside id="skills" class="sidebar">
-                <h2>Stack Tecnologico</h2>
-                <ul class="etiquetas-skills">
-                    <li>JavaScript ES6+</li>
-                    <li>HTML5 Semantico</li>
-                    <li>CSS3 (Grid y Flexbox)</li>
-                    <li>Python y Java</li>
-                    <li>SQL y PostgreSQL</li>
-                    <li>Git y GitHub</li>
-                </ul>
+            <aside id="info-complementaria" class="seccion-bloque sidebar">
+                <h2>Arquitectura del Sistema</h2>
+                <p><strong>Filosofia:</strong> Zero Frameworks Nativo.</p>
+                <p><strong>Validacion:</strong> W3C HTML5 Strict y CSS Box-Model.</p>
+                <p><strong>Asincronia:</strong> Async/Await, Try/Catch y Response.ok.</p>
+                <p><strong>Persistencia:</strong> LocalStorage con serializacion JSON.</p>
             </aside>
         </div>
 
-        <section id="proyectos" class="portfolio-section">
-            <h2>Portafolio de Proyectos</h2>
-            <div class="buscador-container">
-                <label for="input-buscador" class="sr-only">Buscar proyectos</label>
-                <input type="text" id="input-buscador" placeholder="Filtrar por tecnologia o nombre (ej. Java, Redes, SQL)..." aria-label="Buscador de proyectos en tiempo real">
-            </div>
+        <section id="contacto" class="seccion-bloque">
+            <h2>Contacto Profesional y Academico</h2>
+            <p>Formulario con intercepcion de ciclo de vida via submit, validacion en tiempo real por campo (input) y alertas WAI-ARIA.</p>
             
-            <div id="grid-proyectos" class="proyectos-grid">
-                <!-- Se inyecta dinamicamente -->
-            </div>
-        </section>
-
-        <section id="contacto" class="contacto-section">
-            <h2>Contacto Profesional</h2>
             <form id="form-contacto" novalidate>
                 <div class="form-group">
-                    <label for="nombre">Nombre Completo</label>
+                    <label for="nombre">Nombre Completo:</label>
                     <input type="text" id="nombre" name="nombre" required aria-describedby="error-nombre">
                     <span id="error-nombre" class="mensaje-error" aria-live="polite"></span>
                 </div>
 
                 <div class="form-group">
-                    <label for="correo">Correo Electronico</label>
-                    <input type="email" id="correo" name="correo" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" aria-describedby="error-correo">
+                    <label for="correo">Correo Electronico:</label>
+                    <input type="email" id="correo" name="correo" required aria-describedby="error-correo">
                     <span id="error-correo" class="mensaje-error" aria-live="polite"></span>
                 </div>
 
                 <div class="form-group">
-                    <label for="mensaje">Mensaje</label>
-                    <textarea id="mensaje" name="mensaje" rows="4" required aria-describedby="error-mensaje"></textarea>
+                    <label for="motivo">Motivo de Contacto:</label>
+                    <select id="motivo" name="motivo" required aria-describedby="error-motivo">
+                        <option value="">Seleccione una categoria...</option>
+                        <option value="laboral">Propuesta o Proyecto Laboral</option>
+                        <option value="academico">Colaboracion Academica / Investigacion</option>
+                        <option value="desarrollo">Consultoria en Ingenieria de Software</option>
+                        <option value="otro">Otro Asunto</option>
+                    </select>
+                    <span id="error-motivo" class="mensaje-error" aria-live="polite"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="mensaje">Cuerpo del Mensaje:</label>
+                    <textarea id="mensaje" name="mensaje" rows="4" required aria-describedby="error-mensaje" placeholder="Detalle su consulta con un minimo de 10 caracteres..."></textarea>
                     <span id="error-mensaje" class="mensaje-error" aria-live="polite"></span>
                 </div>
 
-                <button type="submit" class="btn-submit">Enviar Mensaje</button>
-                <div id="form-exito" class="mensaje-exito oculto" role="status">Mensaje validado y enviado correctamente.</div>
+                <button type="submit" class="btn-submit">Enviar Formulario</button>
+                <div id="form-exito" class="mensaje-exito oculto" role="status"></div>
             </form>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2026 Joseph Wendell Hans Cortez Chura | Tecnologias Web I (SIS-214)</p>
+    <div id="modal-proyecto" class="modal-backdrop oculto" role="dialog" aria-modal="true" aria-labelledby="modal-titulo" aria-hidden="true">
+        <div class="modal-dialog">
+            <header class="modal-header">
+                <h3 id="modal-titulo">Titulo del Proyecto</h3>
+                <button id="btn-cerrar-modal" class="btn-texto" aria-label="Cerrar ventana modal de detalle">Cerrar</button>
+            </header>
+            <div id="modal-cuerpo" class="modal-body">
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer-principal">
+        <p>&copy; 2026 Joseph Wendell Hans Cortez Chura. Todos los derechos reservados.</p>
+        <p>Universidad Catolica Boliviana "San Pablo" - Tecnologias Web I (SIS-214)</p>
     </footer>
+
     <script src="js/main.js"></script>
 </body>
 </html>

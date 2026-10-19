@@ -1,9 +1,14 @@
+/**
+ * Asignatura: Tecnologias Web I (SIS-214)
+ * Evaluacion Practica 2: Landing Page y Portafolio Profesional Interactivo
+ * Estudiante: Joseph Wendell Hans Cortez Chura
+ */
 
 document.addEventListener('DOMContentLoaded', () => {
 
     const btnTema = document.getElementById('btn-tema');
     const rootElement = document.documentElement;
-    const STORAGE_KEY_TEMA = 'app_user_theme_preference';
+    const THEME_STORAGE_KEY = 'user_theme_config';
 
     const aplicarTema = (tema) => {
         rootElement.setAttribute('data-theme', tema);
@@ -12,17 +17,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    const inicializarTema = () => {
+    const recuperarTema = () => {
         try {
-            const temaGuardado = localStorage.getItem(STORAGE_KEY_TEMA);
-            if (temaGuardado) {
-                const parsedTema = JSON.parse(temaGuardado);
-                aplicarTema(parsedTema.theme);
+            const serializado = localStorage.getItem(THEME_STORAGE_KEY);
+            if (serializado) {
+                const datos = JSON.parse(serializado);
+                aplicarTema(datos.mode);
             } else {
                 aplicarTema('light');
             }
         } catch (error) {
-            console.error('Error al recuperar configuracion de tema desde localStorage:', error);
+            console.error('Fallo al recuperar preferencia de almacenamiento local:', error);
             aplicarTema('light');
         }
     };
@@ -31,31 +36,29 @@ document.addEventListener('DOMContentLoaded', () => {
         btnTema.addEventListener('click', () => {
             const temaActual = rootElement.getAttribute('data-theme') || 'light';
             const nuevoTema = temaActual === 'dark' ? 'light' : 'dark';
-            
             aplicarTema(nuevoTema);
 
             try {
-                const payload = { theme: nuevoTema, timestamp: Date.now() };
-                localStorage.setItem(STORAGE_KEY_TEMA, JSON.stringify(payload));
+                const paquete = { mode: nuevoTema, actualizado: new Date().toISOString() };
+                localStorage.setItem(THEME_STORAGE_KEY, JSON.stringify(paquete));
             } catch (error) {
-                console.error('Error al persistir estado en localStorage:', error);
+                console.error('No se pudo persistir el estado del tema:', error);
             }
         });
     }
 
-    inicializarTema();
+    recuperarTema();
 
     const btnMenu = document.getElementById('btn-menu');
     const navPrincipal = document.getElementById('menu-principal');
 
     if (btnMenu && navPrincipal) {
         btnMenu.addEventListener('click', () => {
-            const estaActivo = navPrincipal.classList.toggle('activo');
-            
-            // Mutacion reactiva de la propiedad WAI-ARIA para tecnologias asistivas
-            btnMenu.setAttribute('aria-expanded', estaActivo ? 'true' : 'false');
-            btnMenu.textContent = estaActivo ? 'Cerrar' : 'Menu';
+            const activo = navPrincipal.classList.toggle('activo');
+            btnMenu.setAttribute('aria-expanded', activo ? 'true' : 'false');
+            btnMenu.textContent = activo ? 'Cerrar' : 'Menu';
         });
+
         navPrincipal.querySelectorAll('a').forEach(enlace => {
             enlace.addEventListener('click', () => {
                 if (navPrincipal.classList.contains('activo')) {
@@ -69,128 +72,195 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const PROYECTOS_DATA = Object.freeze([
         {
-            id: 1,
+            id: 'tienda-deportiva',
             titulo: 'Tienda Deportiva Web',
-            descripcion: 'Plataforma web con gestion de inventario, modelado de bases de datos y scripts de interfaz interactivos.',
-            tecnologia: 'JavaScript / HTML5 / SQL'
+            resumen: 'Plataforma web comercial con gestion de inventario y conexion a bases de datos relacionales.',
+            tecnologia: 'JavaScript / HTML5 / SQL',
+            arquitectura: 'Cliente/Servidor monolítico con scripts DOM y consultas SQL optimizadas.',
+            rol: 'Desarrollador y diseñador de base de datos.',
+            retos: 'Modelado de la integridad referencial para el catalogo de productos y persistencia de compras.',
+            enlace: 'https://github.com/JosephCortez15/Tienda-Deportiva.git'
         },
         {
-            id: 2,
-            titulo: 'Infraestructura de Red SERVITEP',
-            descripcion: 'Diseno topologico y direccionamiento corporativo aplicando segmentacion VLSM, enrutamiento y simulacion.',
-            tecnologia: 'Cisco Packet Tracer / Redes'
+            id: 'red-servitep',
+            titulo: 'Red Corporativa SERVITEP S.R.L.',
+            resumen: 'Diseno e implementacion de infraestructura de red integral para empresa de servicios.',
+            tecnologia: 'Cisco Packet Tracer / Redes / VLSM',
+            arquitectura: 'Segmentacion jerarquica mediante VLSM, switches de distribucion y routers perimetrales.',
+            rol: 'Arquitecto de red y administrador de configuraciones.',
+            retos: 'Calculo exacto de mascaras de subred para optimizar el espacio de direcciones IPv4 corporativo.',
+            enlace: 'https://github.com/JosephCortez15'
         },
         {
-            id: 3,
-            titulo: 'Visualizador de Grafos y Arboles (Graphos)',
-            descripcion: 'Herramienta interactiva para visualizacion de estructuras de datos no lineales y algoritmos de recorrido.',
-            tecnologia: 'React / Flutter / Algoritmos'
+            id: 'graphos-visualizer',
+            titulo: 'Graphos - Visualizador de Grafos y Arboles',
+            resumen: 'Herramienta interactiva para analisis visual de estructuras de datos no lineales y grafos.',
+            tecnologia: 'React / Flutter / Algoritmos',
+            arquitectura: 'Modelado de nodos y aristas en canvas interactivo con visualizacion de recorridos BFS y DFS.',
+            rol: 'Desarrollador frontend y logica algoritmica.',
+            retos: 'Gestion de estados de animacion para ilustrar la ejecucion paso a paso de Dijkstra y Kruskal.',
+            enlace: 'https://github.com/JosephCortez15'
         },
         {
-            id: 4,
-            titulo: 'Plataforma de Streaming A&J Music',
-            descripcion: 'Arquitectura multicapa integrando almacenamiento relacional PostgreSQL, Data Warehouse y base NoSQL MongoDB.',
-            tecnologia: 'PostgreSQL / MongoDB / Data Warehouse'
+            id: 'ayj-music',
+            titulo: 'A&J Music - Plataforma de Streaming',
+            resumen: 'Arquitectura multicapa de almacenamiento de datos para streaming de musica.',
+            tecnologia: 'PostgreSQL / Data Warehouse / MongoDB',
+            arquitectura: 'Esquema transaccional OLTP en PostgreSQL acoplado a modelo analitico en estrella (OLAP) y NoSQL en MongoDB.',
+            rol: 'Disenador de base de datos y procesos ETL.',
+            retos: 'Consolidacion de metricas de reproduccion y extraccion de datos hacia colecciones no relacionales.',
+            enlace: 'https://github.com/JosephCortez15'
         },
         {
-            id: 5,
+            id: 'puzzle-astar',
             titulo: 'Optimizador de Rutas y Puzzle A*',
-            descripcion: 'Aplicacion movil con captura de imagenes y resolucion automatizada mediante el algoritmo de busqueda A*.',
-            tecnologia: 'Flutter / Dart / Algoritmos'
+            resumen: 'Aplicacion movil con captura de imagenes y resolucion automatizada mediante A* Pathfinding.',
+            tecnologia: 'Flutter / Dart / Algoritmos A*',
+            arquitectura: 'Modulo de integracion de camara nativa acoplado a un motor heuristico de optimizacion espacial.',
+            rol: 'Desarrollador movil de extremo a extremo.',
+            retos: 'Optimizacion de la funcion f(n) = g(n) + h(n) en memoria del dispositivo para resolver matrices complejas en milisegundos.',
+            enlace: 'https://github.com/JosephCortez15'
         }
     ]);
 
     const inputBuscador = document.getElementById('input-buscador');
     const gridProyectos = document.getElementById('grid-proyectos');
 
-    const renderizarProyectos = (listaProyectos) => {
+    const modal = document.getElementById('modal-proyecto');
+    const modalTitulo = document.getElementById('modal-titulo');
+    const modalCuerpo = document.getElementById('modal-cuerpo');
+    const btnCerrarModal = document.getElementById('btn-cerrar-modal');
+
+
+    const renderizarTarjetas = (lista) => {
         if (!gridProyectos) return;
 
-        if (listaProyectos.length === 0) {
-            gridProyectos.innerHTML = '<p class="estado-ui">No se encontraron proyectos que coincidan con el criterio de busqueda.</p>';
+        if (lista.length === 0) {
+            gridProyectos.innerHTML = '<p class="estado-ui">No se encontraron proyectos para el criterio de busqueda ingresado.</p>';
             return;
         }
-        const tarjetasHTML = listaProyectos.map(item => `
+
+        gridProyectos.innerHTML = lista.map(item => `
             <article class="card-proyecto" data-id="${item.id}">
-                <h3>${item.titulo}</h3>
-                <p>${item.descripcion}</p>
-                <span class="badge-tech">${item.tecnologia}</span>
+                <div>
+                    <h3>${item.titulo}</h3>
+                    <span class="badge-tech">${item.tecnologia}</span>
+                    <p>${item.resumen}</p>
+                </div>
+                <button type="button" class="btn-detalle" data-id="${item.id}">Ver Especificacion Tecnica</button>
             </article>
         `).join('');
 
-        gridProyectos.innerHTML = tarjetasHTML;
+        gridProyectos.querySelectorAll('.btn-detalle').forEach(boton => {
+            boton.addEventListener('click', () => {
+                const proyectoId = boton.getAttribute('data-id');
+                abrirDetalleProyecto(proyectoId);
+            });
+        });
     };
+
+    const abrirDetalleProyecto = (id) => {
+        const proyecto = PROYECTOS_DATA.find(p => p.id === id);
+        if (!proyecto || !modal) return;
+
+        modalTitulo.textContent = proyecto.titulo;
+        modalCuerpo.innerHTML = `
+            <p><strong>Stack Tecnologico:</strong> ${proyecto.tecnologia}</p>
+            <p><strong>Arquitectura del Sistema:</strong> ${proyecto.arquitectura}</p>
+            <p><strong>Rol Desempenado:</strong> ${proyecto.rol}</p>
+            <p><strong>Retos Tecnicos Resueltos:</strong> ${proyecto.retos}</p>
+            <p><strong>Repositorio Oficial:</strong> <a href="${proyecto.enlace}" target="_blank" rel="noopener noreferrer">${proyecto.enlace}</a></p>
+        `;
+
+        modal.classList.remove('oculto');
+        modal.setAttribute('aria-hidden', 'false');
+        btnCerrarModal.focus();
+    };
+
+    const cerrarModal = () => {
+        if (!modal) return;
+        modal.classList.add('oculto');
+        modal.setAttribute('aria-hidden', 'true');
+    };
+
+    if (btnCerrarModal) {
+        btnCerrarModal.addEventListener('click', cerrarModal);
+    }
+
+    if (modal) {
+        modal.addEventListener('click', (evento) => {
+            if (evento.target === modal) cerrarModal();
+        });
+    }
+
+    document.addEventListener('keydown', (evento) => {
+        if (evento.key === 'Escape' && modal && !modal.classList.contains('oculto')) {
+            cerrarModal();
+        }
+    });
 
     if (inputBuscador) {
         inputBuscador.addEventListener('input', (evento) => {
-            const termino = evento.target.value.toLowerCase().trim();
-
-            // Tuberia funcional: Filtrado inmutable encadenado con renderizado
-            const proyectosFiltrados = PROYECTOS_DATA.filter(proyecto => 
-                proyecto.titulo.toLowerCase().includes(termino) ||
-                proyecto.descripcion.toLowerCase().includes(termino) ||
-                proyecto.tecnologia.toLowerCase().includes(termino)
+            const consulta = evento.target.value.toLowerCase().trim();
+            const filtrados = PROYECTOS_DATA.filter(p => 
+                p.titulo.toLowerCase().includes(consulta) ||
+                p.tecnologia.toLowerCase().includes(consulta) ||
+                p.resumen.toLowerCase().includes(consulta)
             );
-
-            renderizarProyectos(proyectosFiltrados);
+            renderizarTarjetas(filtrados);
         });
     }
-    renderizarProyectos(PROYECTOS_DATA);
+
+    renderizarTarjetas(PROYECTOS_DATA);
 
     const formulario = document.getElementById('form-contacto');
     const inputNombre = document.getElementById('nombre');
     const inputCorreo = document.getElementById('correo');
+    const selectMotivo = document.getElementById('motivo');
     const inputMensaje = document.getElementById('mensaje');
     const feedbackExito = document.getElementById('form-exito');
 
-    const errorNombre = document.getElementById('error-nombre');
-    const errorCorreo = document.getElementById('error-correo');
-    const errorMensaje = document.getElementById('error-mensaje');
+    const errNombre = document.getElementById('error-nombre');
+    const errCorreo = document.getElementById('error-correo');
+    const errMotivo = document.getElementById('error-motivo');
+    const errMensaje = document.getElementById('error-mensaje');
 
-    const validarCampo = (input, elementoError, condicion, mensajeFallo) => {
-        if (!condicion) {
-            input.classList.remove('valido');
-            input.classList.add('invalido');
-            elementoError.textContent = mensajeFallo;
+    const validarInput = (campo, contenedorError, esValido, mensajeError) => {
+        if (!esValido) {
+            campo.classList.remove('valido');
+            campo.classList.add('invalido');
+            contenedorError.textContent = mensajeError;
             return false;
         } else {
-            input.classList.remove('invalido');
-            input.classList.add('valido');
-            elementoError.textContent = '';
+            campo.classList.remove('invalido');
+            campo.classList.add('valido');
+            contenedorError.textContent = '';
             return true;
         }
     };
+
     if (inputNombre) {
         inputNombre.addEventListener('input', () => {
-            validarCampo(
-                inputNombre,
-                errorNombre,
-                inputNombre.value.trim().length >= 3,
-                'El nombre debe contener al menos 3 caracteres validos.'
-            );
+            validarInput(inputNombre, errNombre, inputNombre.value.trim().length >= 3, 'El nombre debe contener al menos 3 caracteres.');
         });
     }
 
     if (inputCorreo) {
         inputCorreo.addEventListener('input', () => {
-            const regexCorreo = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-            validarCampo(
-                inputCorreo,
-                errorCorreo,
-                regexCorreo.test(inputCorreo.value.trim()),
-                'Ingrese un formato de correo electronico corporativo o academico valido.'
-            );
+            const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            validarInput(inputCorreo, errCorreo, regex.test(inputCorreo.value.trim()), 'Ingrese un correo electronico corporativo o institucional valido.');
+        });
+    }
+
+    if (selectMotivo) {
+        selectMotivo.addEventListener('change', () => {
+            validarInput(selectMotivo, errMotivo, selectMotivo.value !== '', 'Debe seleccionar un motivo de contacto.');
         });
     }
 
     if (inputMensaje) {
         inputMensaje.addEventListener('input', () => {
-            validarCampo(
-                inputMensaje,
-                errorMensaje,
-                inputMensaje.value.trim().length >= 10,
-                'El cuerpo del mensaje debe contener un minimo de 10 caracteres.'
-            );
+            validarInput(inputMensaje, errMensaje, inputMensaje.value.trim().length >= 10, 'El mensaje debe contener al menos 10 caracteres explicativos.');
         });
     }
 
@@ -198,21 +268,19 @@ document.addEventListener('DOMContentLoaded', () => {
         formulario.addEventListener('submit', (evento) => {
             evento.preventDefault();
 
-            const regexCorreo = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-            const esNombreValido = validarCampo(inputNombre, errorNombre, inputNombre.value.trim().length >= 3, 'El nombre debe contener al menos 3 caracteres.');
-            const esCorreoValido = validarCampo(inputCorreo, errorCorreo, regexCorreo.test(inputCorreo.value.trim()), 'Ingrese un correo valido.');
-            const esMensajeValido = validarCampo(inputMensaje, errorMensaje, inputMensaje.value.trim().length >= 10, 'El mensaje debe contener al menos 10 caracteres.');
+            const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            const vNom = validarInput(inputNombre, errNombre, inputNombre.value.trim().length >= 3, 'El nombre es obligatorio (min. 3 caracteres).');
+            const vCor = validarInput(inputCorreo, errCorreo, regex.test(inputCorreo.value.trim()), 'El correo electronico es invalido.');
+            const vMot = validarInput(selectMotivo, errMotivo, selectMotivo.value !== '', 'Seleccione un motivo.');
+            const vMen = validarInput(inputMensaje, errMensaje, inputMensaje.value.trim().length >= 10, 'El mensaje debe tener al menos 10 caracteres.');
 
-            if (esNombreValido && esCorreoValido && esMensajeValido) {
+            if (vNom && vCor && vMot && vMen) {
                 if (feedbackExito) {
                     feedbackExito.classList.remove('oculto');
-                    feedbackExito.textContent = 'Formulario validado exitosamente. Datos procesados en el cliente.';
+                    feedbackExito.textContent = 'Formulario validado con exito. Datos procesados en el cliente.';
                 }
-                
                 formulario.reset();
-                [inputNombre, inputCorreo, inputMensaje].forEach(campo => {
-                    campo.classList.remove('valido');
-                });
+                [inputNombre, inputCorreo, selectMotivo, inputMensaje].forEach(el => el.classList.remove('valido'));
 
                 setTimeout(() => {
                     if (feedbackExito) feedbackExito.classList.add('oculto');
@@ -220,54 +288,55 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
     const apiLoading = document.getElementById('api-loading');
     const apiError = document.getElementById('api-error');
     const apiSuccess = document.getElementById('api-success');
+    
+    const GITHUB_USER = 'JosephCortez15';
+    const GITHUB_ENDPOINT = `https://api.github.com/users/${GITHUB_USER}/repos?sort=updated&per_page=4`;
 
-    const GITHUB_USERNAME = 'JosephCortez15';
-    const GITHUB_API_URL = `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=4`;
-
-    const obtenerRepositoriosGitHub = async () => {
-        // Estado 1: Loading activo (peticion en vuelo)
+    const consumirRepositorios = async () => {
         if (apiLoading) apiLoading.classList.remove('oculto');
         if (apiError) apiError.classList.add('oculto');
         if (apiSuccess) apiSuccess.classList.add('oculto');
 
         try {
-            const respuesta = await fetch(GITHUB_API_URL);
+            const respuesta = await fetch(GITHUB_ENDPOINT);
+
             if (!respuesta.ok) {
                 if (respuesta.status === 404) {
-                    throw new Error(`Error 404: Usuario de GitHub "${GITHUB_USERNAME}" no encontrado.`);
+                    throw new Error(`Recurso no encontrado (HTTP 404): Usuario "${GITHUB_USER}" inexistente.`);
                 } else if (respuesta.status === 403) {
-                    throw new Error('Error 403: Limite de peticiones excedido en la API publica de GitHub.');
+                    throw new Error('Limite de tasa de peticiones alcanzado en GitHub API (HTTP 403).');
                 } else if (respuesta.status >= 500) {
-                    throw new Error(`Error ${respuesta.status}: Fallo interno en los servidores de GitHub.`);
+                    throw new Error(`Error en el servidor remoto de GitHub (HTTP ${respuesta.status}).`);
                 } else {
-                    throw new Error(`Error HTTP no resuelto: Estado ${respuesta.status} (${respuesta.statusText}).`);
+                    throw new Error(`Peticion no resuelta con codigo HTTP ${respuesta.status}.`);
                 }
             }
 
-            const repositorios = await respuesta.json();
+            const datos = await respuesta.json();
 
             if (apiSuccess) {
-                if (repositorios.length === 0) {
-                    apiSuccess.innerHTML = '<p class="estado-ui">El usuario no registra repositorios publicos recientes.</p>';
+                if (datos.length === 0) {
+                    apiSuccess.innerHTML = '<p class="estado-ui">No se registran repositorios publicos recientes.</p>';
                 } else {
-                    apiSuccess.innerHTML = repositorios.map(repo => `
-                        <div class="repo-card">
-                            <p><a href="${repo.html_url}" target="_blank" rel="noopener noreferrer">${repo.name}</a></p>
-                            <p><small>${repo.description || 'Sin descripcion proporcionada.'}</small></p>
-                            <p><small>Lenguaje principal: ${repo.language || 'Multiple / Sin definir'}</small></p>
-                        </div>
+                    apiSuccess.innerHTML = datos.map(r => `
+                        <article class="repo-card">
+                            <p><a href="${r.html_url}" target="_blank" rel="noopener noreferrer">${r.name}</a></p>
+                            <p><small>${r.description || 'Sin descripcion publica asignada en GitHub.'}</small></p>
+                            <p><small>Lenguaje base: ${r.language || 'Configuracion multiple'}</small></p>
+                        </article>
                     `).join('');
                 }
                 apiSuccess.classList.remove('oculto');
             }
 
         } catch (error) {
-            console.error('Fallo en la ejecucion del modulo Fetch API:', error.message);
+            console.error('Excepcion asincrona capturada:', error.message);
             if (apiError) {
-                apiError.textContent = `Fallo en la integracion asincrona: ${error.message}`;
+                apiError.textContent = `Fallo en la sincronizacion con la API: ${error.message}`;
                 apiError.classList.remove('oculto');
             }
         } finally {
@@ -275,5 +344,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    obtenerRepositoriosGitHub();
+    consumirRepositorios();
 });
