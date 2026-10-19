@@ -7,14 +7,14 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <!-- ENCABEZADO Y NAVEGACIÓN -->
     <header class="header-principal">
-        <div class="logo">J.Cortez <span aria-hidden="true">|</span> Sistemas</div>
-        
+        <div class="logo">Joseph Cortez <span aria-hidden="true">|</span> Sistemas</div>
         <div class="controles-ui">
-            <button id="btn-tema" aria-label="Alternar modo oscuro y claro" class="btn-icon">🌙</button>
-            <button id="btn-menu" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menú de navegación" class="btn-hamburguesa">
-                ☰
+            <button id="btn-tema" aria-label="Alternar modo oscuro y claro" class="btn-texto">
+                Modo Oscuro
+            </button>
+            <button id="btn-menu" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu de navegacion" class="btn-hamburguesa">
+                Menu
             </button>
         </div>
 
@@ -29,28 +29,29 @@
     </header>
 
     <main class="contenedor-principal">
-        
         <section id="perfil" class="hero-section">
             <h1>Joseph Wendell Hans Cortez Chura</h1>
-            <p>Ingeniería de Sistemas | Universidad Católica Boliviana</p>
+            <p>Estudiante de Ingenieria de Sistemas | Universidad Catolica Boliviana San Pablo</p>
         </section>
 
         <div class="layout-grid">
             <section id="github-api" class="api-section">
                 <h2>Actividad en GitHub (En vivo)</h2>
-                <div id="api-loading" class="estado-ui">Cargando datos del servidor... ⏳</div>
-                <div id="api-error" class="estado-ui oculto" role="alert">Error al conectar con la API ❌</div>
+                <div id="api-loading" class="estado-ui">Cargando repositorios desde el servidor...</div>
+                <div id="api-error" class="estado-ui oculto" role="alert">Error al conectar con la API de GitHub. Verifique la conexion.</div>
                 <div id="api-success" class="oculto">
                 </div>
             </section>
 
             <aside id="skills" class="sidebar">
-                <h2>Stack Tecnológico</h2>
+                <h2>Stack Tecnologico</h2>
                 <ul class="etiquetas-skills">
                     <li>JavaScript ES6+</li>
-                    <li>HTML5 Semántico</li>
-                    <li>CSS3 (Grid/Flex)</li>
-                    <li>Python & Java</li>
+                    <li>HTML5 Semantico</li>
+                    <li>CSS3 (Grid y Flexbox)</li>
+                    <li>Python y Java</li>
+                    <li>SQL y PostgreSQL</li>
+                    <li>Git y GitHub</li>
                 </ul>
             </aside>
         </div>
@@ -59,10 +60,11 @@
             <h2>Portafolio de Proyectos</h2>
             <div class="buscador-container">
                 <label for="input-buscador" class="sr-only">Buscar proyectos</label>
-                <input type="text" id="input-buscador" placeholder="Ej. Base de datos, Java, Redes..." aria-label="Buscador de proyectos en tiempo real">
+                <input type="text" id="input-buscador" placeholder="Filtrar por tecnologia o nombre (ej. Java, Redes, SQL)..." aria-label="Buscador de proyectos en tiempo real">
             </div>
             
             <div id="grid-proyectos" class="proyectos-grid">
+                <!-- Se inyecta dinamicamente -->
             </div>
         </section>
 
@@ -76,7 +78,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="correo">Correo Electrónico</label>
+                    <label for="correo">Correo Electronico</label>
                     <input type="email" id="correo" name="correo" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" aria-describedby="error-correo">
                     <span id="error-correo" class="mensaje-error" aria-live="polite"></span>
                 </div>
@@ -88,14 +90,14 @@
                 </div>
 
                 <button type="submit" class="btn-submit">Enviar Mensaje</button>
+                <div id="form-exito" class="mensaje-exito oculto" role="status">Mensaje validado y enviado correctamente.</div>
             </form>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 Joseph Cortez | Desarrollado para Tecnologías Web I</p>
+        <p>&copy; 2026 Joseph Wendell Hans Cortez Chura | Tecnologias Web I (SIS-214)</p>
     </footer>
-
     <script src="js/main.js"></script>
 </body>
 </html>
